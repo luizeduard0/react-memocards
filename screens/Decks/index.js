@@ -7,7 +7,7 @@ class Decks extends Component {
     const { navigation } = this.props
     return (
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => navigation.navigate('ShowDeck')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Deck')}>
           <Deck />
         </TouchableOpacity>
         <Deck />
