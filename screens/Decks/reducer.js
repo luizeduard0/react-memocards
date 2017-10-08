@@ -11,7 +11,7 @@ export default function decks(state={}, action) {
       return {
         ...state,
         [id]: {
-          id, 
+          id,
           title
         }
       }
