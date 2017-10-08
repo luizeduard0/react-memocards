@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Platform } from 'react-native'
+import { btn, btnPrimary, btnText } from './../../utils/styles'
 
 export default class AddDeck extends Component {
   handleSubmit = () => {
@@ -14,8 +15,8 @@ export default class AddDeck extends Component {
             style={styles.input}
             placeholder='Deck Title' />
         </View>
-        <TouchableOpacity onPress={this.handleSubmit} style={styles.btn}>
-          <Text style={styles.btnText}>Submit</Text>
+        <TouchableOpacity onPress={this.handleSubmit} style={[btn, btnPrimary]}>
+          <Text style={btnText}>Submit</Text>
         </TouchableOpacity>
       </View>
     )
@@ -42,18 +43,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     padding: 20,
     borderRadius: Platform.OS === 'ios' ? 6 : 2
-  },
-  btn: {
-    padding: 10,
-    marginTop: 10,
-    marginLeft: 50,
-    marginRight: 50,
-    backgroundColor: '#4286f4',
-    alignItems: 'center',
-    borderRadius: Platform.OS === 'ios' ? 6 : 2
-  },
-  btnText: {
-    color: '#fff',
-    fontSize: 20
   }
 })
