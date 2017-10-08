@@ -6,9 +6,6 @@ import { btn, btnPrimary, btnText, textBold } from './../../utils/styles'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 class Decks extends Component {
-
-  _keyExtractor = (item, index) => item.id;
-
   render() {
     const { navigation, decks } = this.props
 
