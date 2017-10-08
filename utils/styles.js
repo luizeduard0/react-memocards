@@ -18,3 +18,7 @@ export const btnText = {
 export const btnPrimary = {
   backgroundColor: '#4286f4',
 }
+
+export const textBold = {
+  fontWeight: 'bold'
+}

@@ -2,18 +2,24 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 import Deck from './../../components/Deck'
-import { btn, btnPrimary, btnText } from './../../utils/styles'
+import { btn, btnPrimary, btnText, textBold } from './../../utils/styles'
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 class Decks extends Component {
+
+  _keyExtractor = (item, index) => item.id;
+
   render() {
     const { navigation, decks } = this.props
 
     if(!decks.length) {
       return (
         <View style={styles.center}>
-          <Text>No decks yet.</Text>
+          <MaterialCommunityIcons name='cards-outline' size={100} color={'#aaa'} />
+          <Text style={{ margin: 10, marginBottom: 40, color: '#888' }}>No decks yet.</Text>
           <TouchableOpacity onPress={() => navigation.navigate('AddDeck')} style={[btn, btnPrimary]}>
-            <Text style={btnText}>Create Deck</Text>
+            <Text style={btnText}>Create <Text style={textBold}>New Deck</Text>
+            </Text>
           </TouchableOpacity>
         </View>
       )
@@ -23,14 +29,13 @@ class Decks extends Component {
       <View style={styles.container}>
         <FlatList
           data={decks}
-          renderItem={() => (
-            <TouchableOpacity onPress={() => navigation.navigate('Deck')}>
-              <Deck />
+          keyExtractor={(item, index) => item.id}
+          renderItem={({ item }) => (
+            <TouchableOpacity key={item.id} onPress={() => navigation.navigate('Deck')}>
+              <Deck deck={item}  />
             </TouchableOpacity>
           )}
          />
-        <Deck />
-        <Deck />
       </View>
     )
   }

@@ -1,19 +1,33 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, Platform } from 'react-native'
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Platform, AsyncStorage } from 'react-native'
+import { connect } from 'react-redux'
 import { btn, btnPrimary, btnText } from './../../utils/styles'
+import * as DeckApi from './../Decks/api'
+import { addDeck } from './actions'
 
-export default class AddDeck extends Component {
+class AddDeck extends Component {
+  state = {
+    deckTitle: ''
+  }
   handleSubmit = () => {
-    alert('submit!')
+    DeckApi.save(this.state.deckTitle)
+    .then(newDeck => {
+      this.props.addDeck(newDeck)
+      this.setState({ deckTitle: '' })
+      this.props.navigation.navigate('Decks')
+    })
   }
   render() {
+    const { deckTitle } = this.state
     return (
       <View style={styles.container}>
         <Text style={styles.title}>What's the title of your new deck?</Text>
         <View style={styles.inputBox}>
           <TextInput
             style={styles.input}
-            placeholder='Deck Title' />
+            value={deckTitle}
+            placeholder='Deck Title'
+            onChangeText={deckTitle => this.setState({ deckTitle })}/>
         </View>
         <TouchableOpacity onPress={this.handleSubmit} style={[btn, btnPrimary]}>
           <Text style={btnText}>Submit</Text>
@@ -45,3 +59,9 @@ const styles = StyleSheet.create({
     borderRadius: Platform.OS === 'ios' ? 6 : 2
   }
 })
+function mapDispatchToProps(dispatch) {
+  return {
+    addDeck: data => dispatch(addDeck(data))
+  }
+}
+export default connect(null, mapDispatchToProps)(AddDeck)

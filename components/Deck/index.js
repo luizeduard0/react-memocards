@@ -1,11 +1,11 @@
 import React from 'react'
 import { View, Text, StyleSheet, Platform } from 'react-native'
 
-export default Deck = () => {
+export default Deck = ({ deck }) => {
   return (
     <View style={styles.deck}>
       <View style={styles.header}>
-        <Text style={styles.title}>French Lessons</Text>
+        <Text style={styles.title}>{ deck.title }</Text>
         <Text style={styles.subtitle}>{3} cards</Text>
       </View>
     </View>
