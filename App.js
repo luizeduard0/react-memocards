@@ -6,6 +6,7 @@ import Decks from './screens/Decks'
 import rootReducer from './rootReducer'
 import logger from 'redux-logger'
 
+
 const store = createStore(rootReducer, compose(
   applyMiddleware(logger)
 ))

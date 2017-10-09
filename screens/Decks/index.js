@@ -7,11 +7,11 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 class Decks extends Component {
   render() {
-    const { navigation, decks } = this.props
+    const { navigation, decks, style={} } = this.props
 
     if(!decks.length) {
       return (
-        <View style={styles.center}>
+        <View style={[styles.center, style]}>
           <MaterialCommunityIcons name='cards-outline' size={100} color={'#aaa'} />
           <Text style={{ margin: 10, marginBottom: 40, color: '#888' }}>No decks yet.</Text>
           <TouchableOpacity onPress={() => navigation.navigate('AddDeck')} style={[btn, btnPrimary]}>
@@ -28,8 +28,10 @@ class Decks extends Component {
           data={decks}
           keyExtractor={(item, index) => item.id}
           renderItem={({ item }) => (
-            <TouchableOpacity key={item.id} onPress={() => navigation.navigate('Deck')}>
-              <Deck deck={item}  />
+            <TouchableOpacity key={item.id} onPress={() => navigation.navigate('Deck', {
+              id: item.id
+            })}>
+              <Deck deck={item} navigation={navigation}  />
             </TouchableOpacity>
           )}
          />
@@ -52,7 +54,6 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps({ decks={} }) {
-  console.log('DECKS', decks)
   return {
     decks: Object.keys(decks)
                  .map(key => {

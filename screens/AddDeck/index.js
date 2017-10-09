@@ -9,8 +9,30 @@ class AddDeck extends Component {
   state = {
     deckTitle: ''
   }
+  /**
+   * TODO: REMOVE THIS
+   */
+  componentDidMount(){
+    DeckApi.save('ReactJS')
+    .then(newDeck => {
+      this.props.addDeck(newDeck)
+      this.setState({ deckTitle: '' })
+      this.props.navigation.navigate('Decks')
+    })
+    DeckApi.save('React Native')
+    .then(newDeck => {
+      this.props.addDeck(newDeck)
+      this.setState({ deckTitle: '' })
+      this.props.navigation.navigate('Decks')
+    })
+    DeckApi.save('Laravel')
+    .then(newDeck => {
+      this.props.addDeck(newDeck)
+      this.setState({ deckTitle: '' })
+      this.props.navigation.navigate('Decks')
+    })
+  }
   handleSubmit = () => {
-
     if(!this.state.deckTitle) {
       Alert.alert('You need to name your deck')
       return
