@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, Platform, AsyncStorage } from 'react-native'
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Platform, AsyncStorage, Alert } from 'react-native'
 import { connect } from 'react-redux'
 import { btn, btnPrimary, btnText } from './../../utils/styles'
 import * as DeckApi from './../Decks/api'
@@ -10,6 +10,12 @@ class AddDeck extends Component {
     deckTitle: ''
   }
   handleSubmit = () => {
+
+    if(!this.state.deckTitle) {
+      Alert.alert('You need to name your deck')
+      return
+    }
+
     DeckApi.save(this.state.deckTitle)
     .then(newDeck => {
       this.props.addDeck(newDeck)

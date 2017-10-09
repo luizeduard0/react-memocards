@@ -12,7 +12,8 @@ export const get = () => {
 export const save = title => {
   AsyncStorage.setItem(MEMOCARD_KEY, JSON.stringify({
     id: uuid(),
-    title
+    title,
+    cards: {}
   }))
 
   return get()

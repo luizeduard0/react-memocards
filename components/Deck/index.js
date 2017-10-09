@@ -6,7 +6,7 @@ export default Deck = ({ deck }) => {
     <View style={styles.deck}>
       <View style={styles.header}>
         <Text style={styles.title}>{ deck.title }</Text>
-        <Text style={styles.subtitle}>{3} cards</Text>
+        <Text style={styles.subtitle}>{deck.cards.length || 0} cards</Text>
       </View>
     </View>
   )

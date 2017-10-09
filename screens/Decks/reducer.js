@@ -2,7 +2,7 @@ import { FETCH_DECKS } from './actions'
 import { ADD_DECK } from './../AddDeck/actions'
 
 export default function decks(state={}, action) {
-  const { id, title } = action
+  const { id, title, cards } = action
   switch(action.type) {
     case FETCH_DECKS:
       return {}
@@ -12,7 +12,8 @@ export default function decks(state={}, action) {
         ...state,
         [id]: {
           id,
-          title
+          title,
+          cards
         }
       }
     default:
