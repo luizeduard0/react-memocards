@@ -32,3 +32,29 @@ export const btnOutline = {
 export const textBold = {
   fontWeight: 'bold'
 }
+
+export const btnLink = {
+  backgroundColor: 'transparent',
+  borderWidth: 0
+}
+
+export const card = {
+  marginTop: 5,
+  marginBottom: 5,
+  marginLeft: 10,
+  marginRight: 10,
+  minHeight: 160,
+  padding: 20,
+  backgroundColor: '#fff',
+  borderWidth: 1,
+  borderColor: '#ddd',
+  borderRadius: Platform.OS === 'ios' ? 8 : 2,
+  shadowColor: '#000',
+  shadowOpacity: 0.09,
+  shadowOffset: {
+    width: 0,
+    height: 1
+  },
+  alignItems: 'center',
+  justifyContent: 'center'
+}

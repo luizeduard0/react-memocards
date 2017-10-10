@@ -4,6 +4,8 @@ import { MaterialCommunityIcons, SimpleLineIcons } from '@expo/vector-icons'
 import Decks from './screens/Decks'
 import AddDeck from './screens/AddDeck'
 import ShowDeck from './screens/ShowDeck'
+import AddCard from './screens/AddCard'
+import Quiz from './screens/Quiz'
 
 export const TabNavigation = TabNavigator({
   Decks: {
@@ -31,5 +33,11 @@ export const MainNavigation = StackNavigator({
   },
   Deck: {
     screen: ShowDeck
+  },
+  Quiz: {
+    screen: Quiz
+  },
+  AddCard: {
+    screen: AddCard
   }
 })

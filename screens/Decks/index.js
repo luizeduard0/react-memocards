@@ -58,11 +58,10 @@ function mapStateToProps({ decks={} }) {
     decks: Object.keys(decks)
                  .map(key => {
                    const deck = decks[key]
+                   deck.questions = Object.keys(deck.questions)
+                                          .map(questionKey => deck.questions[questionKey])
 
-                   deck.cards = Object.keys(deck.cards)
-                                      .map(cardKey => deck.cards[cardKey])
-
-                   return deck
+                  return deck
                  })
   }
 }

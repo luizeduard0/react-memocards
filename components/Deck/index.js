@@ -8,7 +8,7 @@ export default Deck = ({ deck, navigation,  type='compact' }) => {
     <View style={styles.deck}>
       <View style={styles.header}>
         <Text style={styles.title}>{ deck.title }</Text>
-        <Text style={styles.subtitle}>{deck.cards.length || 0} cards</Text>
+        <Text style={styles.subtitle}>{deck.questions.length || 0} cards</Text>
       </View>
       {type==='complete' && (
         <View style={styles.actionBtns}>
@@ -18,8 +18,8 @@ export default Deck = ({ deck, navigation,  type='compact' }) => {
               Add Card
             </Text>
           </TouchableOpacity>
-          {deck.cards.length > 0 && (
-            <TouchableOpacity style={[btn, btnPrimary ]}>
+          {deck.questions.length > 0 && (
+            <TouchableOpacity onPress={() => navigation.navigate('Quiz', { id: deck.id })} style={[btn, btnPrimary ]}>
               <Text style={btnText}>
                 <MaterialCommunityIcons name='play' size={17} /> Quiz
               </Text>

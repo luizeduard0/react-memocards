@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Platform, AsyncStorage, Alert } from 'react-native'
 import { connect } from 'react-redux'
 import { btn, btnPrimary, btnText } from './../../utils/styles'
-import * as DeckApi from './../Decks/api'
-import { addDeck } from './actions'
+import * as DeckApi from './../../api/decks'
+import { addDeck } from './../../actions/decks'
 
 class AddDeck extends Component {
   state = {
@@ -13,7 +13,20 @@ class AddDeck extends Component {
    * TODO: REMOVE THIS
    */
   componentDidMount(){
-    DeckApi.save('ReactJS')
+    DeckApi.save('ReactJS', {
+      ['af1892']: {
+        title: 'Whats your favorite color?',
+        correctAnswer: 'none'
+      },
+      ['24af1892']: {
+        title: 'Whats your favorite dog?',
+        correctAnswer: 'Zoe'
+      },
+      ['24af1af892']: {
+        title: 'Whats your favorite food?',
+        correctAnswer: 'Japanese'
+      }
+    })
     .then(newDeck => {
       this.props.addDeck(newDeck)
       this.setState({ deckTitle: '' })
