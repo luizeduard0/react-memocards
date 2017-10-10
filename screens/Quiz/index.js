@@ -45,19 +45,48 @@ class Quiz extends Component {
         return
     }
   }
-  getResultPerc = () => {
+  getResult = () => {
     const { totalQuestions, correctAnswers } = this.state
-    return ((correctAnswers * 100) / totalQuestions).toFixed(1) + '%'
+    const perc = ((correctAnswers * 100) / totalQuestions).toFixed(1)
+
+    message = ''
+
+    if(perc >= 0) message = "😔 Nothing at all? Try again!"
+    if(perc >= 20) message = "😔 Too bad."
+    if(perc >= 40) message = "📖 Let's do some more practice. Try again."
+    if(perc >= 60) message = "💪 That was good! But you can do better"
+    if(perc >= 80) message = "👍 Awesome! You did a great job"
+    if(perc >= 99) message = "👏 Congratulations! You nailed it."
+
+
+    return {
+      message,
+      perc
+    }
   }
   render() {
     const { currentQuestion, totalQuestions, showAnswer, showResults } = this.state
     const question = !!this.props.deck.questions[currentQuestion] ? this.props.deck.questions[currentQuestion] : null
 
     if(showResults) {
+      const result = this.getResult()
       return (
         <View style={styles.center}>
-          <Text>Results</Text>
-          <Text>{this.getResultPerc()}</Text>
+          <Text style={{ fontSize: 30 }}>{result.perc}%</Text>
+          <Text style={{ fontSize: 20 }}>{result.message}</Text>
+
+          {result.perc < 99 && (
+            <TouchableOpacity
+              onPress={() => this.setState({
+                showResults: false,
+                showAnswer: false,
+                currentQuestion: 0,
+                correctAnswers: 0
+              })}
+              style={[btn]}>
+              <Text style={btnText}>Try again</Text>
+            </TouchableOpacity>
+          )}
         </View>
       )
     }
