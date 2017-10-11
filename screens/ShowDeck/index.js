@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
-import { btn, btnLink, btnTextOutline } from './../../utils/styles'
+import globalStyle from './../../utils/styles'
 
 class ShowDeck extends Component {
   render() {
@@ -10,8 +10,8 @@ class ShowDeck extends Component {
       <View>
         <Deck deck={deck} navigation={navigation} type='complete' type='complete' />
 
-        <TouchableOpacity onPress={() => navigation.navigate('Decks')} style={[ btn, btnLink ]}>
-          <Text style={btnTextOutline}>Show all decks</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Decks')} style={[ globalStyle.btn, globalStyle.btnLink ]}>
+          <Text style={globalStyle.btnTextOutline}>Show all decks</Text>
         </TouchableOpacity>
 
       </View>

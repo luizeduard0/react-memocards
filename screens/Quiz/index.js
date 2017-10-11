@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
-import { card, btnPrimary, btnLink, btn, btnTextOutline, btnText, btnDanger } from './../../utils/styles'
+import globalStyle from './../../utils/styles'
 import { clearLocalNotification } from './../../utils/helpers'
 
 class Quiz extends Component {
@@ -108,13 +108,13 @@ class Quiz extends Component {
                 currentQuestion: 0,
                 correctAnswers: 0
               })}
-              style={[btn, { backgroundColor: 'rgba(0,0,0,0.3)' }]}>
-              <Text style={[btnText]}>Restart Quiz</Text>
+              style={[globalStyle.btn, { backgroundColor: 'rgba(0,0,0,0.3)' }]}>
+              <Text style={[globalStyle.btnText]}>Restart Quiz</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => navigation.navigate('Deck', { id: navigation.state.params.id  })}
-              style={[btn, { backgroundColor: 'rgba(0,0,0,0.3)' }]}>
-              <Text style={[btnText]}>Back to Deck</Text>
+              style={[globalStyle.btn, { backgroundColor: 'rgba(0,0,0,0.3)' }]}>
+              <Text style={[globalStyle.btnText]}>Back to Deck</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -123,7 +123,7 @@ class Quiz extends Component {
 
 
     return (
-      <View style={card}>
+      <View style={globalStyle.card}>
         <View style={styles.questionBreadcrumbs}>
           <Text style={styles.questionBreadcrumbsText}>{currentQuestion+1}/{totalQuestions}</Text>
         </View>
@@ -136,27 +136,27 @@ class Quiz extends Component {
           <View style={styles.answer}>
             <TouchableOpacity
                 onPress={() => this.setState({ showAnswer: false })}
-                style={[btn, btnLink, { marginTop: 5 }]}>
-              <Text style={btnTextOutline}>Question</Text>
+                style={[globalStyle.btn, globalStyle.btnLink, { marginTop: 5 }]}>
+              <Text style={globalStyle.btnTextOutline}>Question</Text>
             </TouchableOpacity>
             <View style={styles.actions}>
               <TouchableOpacity
                   onPress={() => this.answer('incorrect')}
-                  style={[btn, btnDanger, { marginTop: 20 }]}>
-                <Text style={[btnText, {fontSize: 16}]}>Incorrect</Text>
+                  style={[globalStyle.btn, globalStyle.btnDanger, { marginTop: 20 }]}>
+                <Text style={[globalStyle.btnText, {fontSize: 16}]}>Incorrect</Text>
               </TouchableOpacity>
               <TouchableOpacity
                   onPress={() => this.answer('correct')}
-                  style={[btn, btnPrimary, { marginTop: 20 }]}>
-                <Text style={[btnText, {fontSize: 16}]}>Correct</Text>
+                  style={[globalStyle.btn, globalStyle.btnPrimary, { marginTop: 20 }]}>
+                <Text style={[globalStyle.btnText, {fontSize: 16}]}>Correct</Text>
               </TouchableOpacity>
             </View>
           </View>
         ) || (
           <TouchableOpacity
               onPress={() => this.setState({ showAnswer: true })}
-              style={[btn, btnLink, { marginTop: 5 }]}>
-            <Text style={btnTextOutline}>Answer</Text>
+              style={[globalStyle.btn, globalStyle.btnLink, { marginTop: 5 }]}>
+            <Text style={globalStyle.btnTextOutline}>Answer</Text>
           </TouchableOpacity>
         )}
       </View>

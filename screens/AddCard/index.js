@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Platform, Alert } from 'react-native'
 import { connect } from 'react-redux'
-import { btn, btnPrimary, btnText } from './../../utils/styles'
+import globalStyle from './../../utils/styles'
 import { addQuestion } from './../../actions/decks'
 import { uuid } from './../../utils/helpers'
 
@@ -58,8 +58,8 @@ class AddCard extends Component {
             placeholder='Answer'
             onChangeText={correctAnswer => this.setState({ correctAnswer })}/>
         </View>
-        <TouchableOpacity onPress={this.handleSubmit} style={[btn, btnPrimary, styles.btnCustom]}>
-          <Text style={[btnText, styles.btnCustomTxt]}>Submit</Text>
+        <TouchableOpacity onPress={this.handleSubmit} style={[globalStyle.btn, globalStyle.btnPrimary, styles.btnCustom]}>
+          <Text style={[globalStyle.btnText, styles.btnCustomTxt]}>Submit</Text>
         </TouchableOpacity>
       </View>
     )

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 import Deck from './../../components/Deck'
-import { btn, btnPrimary, btnText, textBold } from './../../utils/styles'
+import globalStyle from './../../utils/styles'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 class Decks extends Component {
@@ -19,8 +19,8 @@ class Decks extends Component {
           <Text style={{ marginTop: 10, marginBottom: 40, color: '#888' }}>
             Do this few minutes everyday and you will get great results.
           </Text>
-          <TouchableOpacity onPress={() => navigation.navigate('AddDeck')} style={[btn, btnPrimary]}>
-            <Text style={btnText}><Text style={textBold}>New Deck</Text>
+          <TouchableOpacity onPress={() => navigation.navigate('AddDeck')} style={[globalStyle.btn, globalStyle.btnPrimary]}>
+            <Text style={globalStyle.btnText}><Text style={globalStyle.textBold}>New Deck</Text>
             </Text>
           </TouchableOpacity>
         </View>

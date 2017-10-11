@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Platform, AsyncStorage, Alert } from 'react-native'
 import { connect } from 'react-redux'
-import { btn, btnPrimary, btnText } from './../../utils/styles'
+import globalStyle from './../../utils/styles'
 import * as DeckApi from './../../api/decks'
 import { addDeck } from './../../actions/decks'
 
@@ -34,8 +34,8 @@ class AddDeck extends Component {
             placeholder='Deck Title'
             onChangeText={deckTitle => this.setState({ deckTitle })}/>
         </View>
-        <TouchableOpacity onPress={this.handleSubmit} style={[btn, btnPrimary]}>
-          <Text style={btnText}>Submit</Text>
+        <TouchableOpacity onPress={this.handleSubmit} style={[globalStyle.btn, globalStyle.btnPrimary]}>
+          <Text style={globalStyle.btnText}>Submit</Text>
         </TouchableOpacity>
       </View>
     )

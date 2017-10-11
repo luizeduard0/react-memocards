@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet, Platform, TouchableOpacity } from 'react-native'
-import { btn, btnPrimary, btnText, btnOutline, btnTextOutline } from './../../utils/styles'
+import globalStyle from './../../utils/styles'
 import { MaterialCommunityIcons, EvilIcons } from '@expo/vector-icons'
 
 export default Deck = ({ deck, navigation,  type='compact' }) => {
@@ -12,15 +12,15 @@ export default Deck = ({ deck, navigation,  type='compact' }) => {
       </View>
       {type==='complete' && (
         <View style={styles.actionBtns}>
-          <TouchableOpacity onPress={() => navigation.navigate('AddCard', { id: deck.id })} style={[btn, btnOutline]}>
-            <Text style={btnTextOutline}>
+          <TouchableOpacity onPress={() => navigation.navigate('AddCard', { id: deck.id })} style={[globalStyle.btn, globalStyle.btnOutline]}>
+            <Text style={globalStyle.btnTextOutline}>
               <MaterialCommunityIcons name='cards' size={17} />
               Add Card
             </Text>
           </TouchableOpacity>
           {deck.questions.length > 0 && (
-            <TouchableOpacity onPress={() => navigation.navigate('Quiz', { id: deck.id })} style={[btn, btnPrimary ]}>
-              <Text style={btnText}>
+            <TouchableOpacity onPress={() => navigation.navigate('Quiz', { id: deck.id })} style={[globalStyle.btn, globalStyle.btnPrimary ]}>
+              <Text style={globalStyle.btnText}>
                 <MaterialCommunityIcons name='play' size={17} /> Quiz
               </Text>
             </TouchableOpacity>
