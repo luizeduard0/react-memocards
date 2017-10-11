@@ -14,10 +14,10 @@ class Decks extends Component {
         <View style={[styles.center, style]}>
           <MaterialCommunityIcons name='cards-outline' size={100} color={'#aaa'} />
           <Text style={{ alignSelf: 'center', marginTop: 10, fontSize: 20, color: '#333' }}>
-            <Text style={{ fontWeight: 'bold', color: '#4286f4' }}>MemoCard</Text> is a great way to improve you studing.
+            <Text style={{ fontWeight: 'bold', color: '#4286f4' }}>MemoCard</Text> is a great way to improve your studies.
           </Text>
           <Text style={{ marginTop: 10, marginBottom: 40, color: '#888' }}>
-            Do this min few minutes everyday and you will get great results.
+            Do this few minutes everyday and you will get great results.
           </Text>
           <TouchableOpacity onPress={() => navigation.navigate('AddDeck')} style={[btn, btnPrimary]}>
             <Text style={btnText}><Text style={textBold}>New Deck</Text>

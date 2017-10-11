@@ -90,6 +90,7 @@ class Quiz extends Component {
   }
   render() {
     const { currentQuestion, totalQuestions, showAnswer, showResults } = this.state
+    const { navigation } = this.props
     const question = !!this.props.deck.questions[currentQuestion] ? this.props.deck.questions[currentQuestion] : null
 
     if(showResults) {
@@ -99,7 +100,7 @@ class Quiz extends Component {
           <Text style={styles.resultText}>{result.perc}%</Text>
           <Text style={styles.resultTextSmall}>{result.message}</Text>
 
-          {result.perc < 99 && (
+          <View style={{ flexDirection: 'row' }}>
             <TouchableOpacity
               onPress={() => this.setState({
                 showResults: false,
@@ -108,9 +109,14 @@ class Quiz extends Component {
                 correctAnswers: 0
               })}
               style={[btn, { backgroundColor: 'rgba(0,0,0,0.3)' }]}>
-              <Text style={[btnText]}>Try again</Text>
+              <Text style={[btnText]}>Restart Quiz</Text>
             </TouchableOpacity>
-          )}
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Deck', { id: navigation.state.params.id  })}
+              style={[btn, { backgroundColor: 'rgba(0,0,0,0.3)' }]}>
+              <Text style={[btnText]}>Back to Deck</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       )
     }
