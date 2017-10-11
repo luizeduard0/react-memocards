@@ -23,6 +23,10 @@ export const btnPrimary = {
   backgroundColor: '#4286f4',
 }
 
+export const btnDanger = {
+  backgroundColor: '#cf4f32',
+}
+
 export const btnOutline = {
   backgroundColor: 'transparent',
   borderWidth: 1,

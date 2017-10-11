@@ -9,42 +9,6 @@ class AddDeck extends Component {
   state = {
     deckTitle: ''
   }
-  /**
-   * TODO: REMOVE THIS
-   */
-  componentDidMount(){
-    DeckApi.save('ReactJS', {
-      ['af1892']: {
-        title: 'Whats your favorite color?',
-        correctAnswer: 'none'
-      },
-      ['24af1892']: {
-        title: 'Whats your favorite dog?',
-        correctAnswer: 'Zoe'
-      },
-      ['24af1af892']: {
-        title: 'Whats your favorite food?',
-        correctAnswer: 'Japanese'
-      }
-    })
-    .then(newDeck => {
-      this.props.addDeck(newDeck)
-      this.setState({ deckTitle: '' })
-      this.props.navigation.navigate('Decks')
-    })
-    DeckApi.save('React Native')
-    .then(newDeck => {
-      this.props.addDeck(newDeck)
-      this.setState({ deckTitle: '' })
-      this.props.navigation.navigate('Decks')
-    })
-    DeckApi.save('Laravel')
-    .then(newDeck => {
-      this.props.addDeck(newDeck)
-      this.setState({ deckTitle: '' })
-      this.props.navigation.navigate('Decks')
-    })
-  }
   handleSubmit = () => {
     if(!this.state.deckTitle) {
       Alert.alert('You need to name your deck')
@@ -55,7 +19,7 @@ class AddDeck extends Component {
     .then(newDeck => {
       this.props.addDeck(newDeck)
       this.setState({ deckTitle: '' })
-      this.props.navigation.navigate('Decks')
+      this.props.navigation.navigate('Deck',{ id: newDeck.id })
     })
   }
   render() {

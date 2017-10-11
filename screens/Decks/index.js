@@ -13,9 +13,14 @@ class Decks extends Component {
       return (
         <View style={[styles.center, style]}>
           <MaterialCommunityIcons name='cards-outline' size={100} color={'#aaa'} />
-          <Text style={{ margin: 10, marginBottom: 40, color: '#888' }}>No decks yet.</Text>
+          <Text style={{ alignSelf: 'center', marginTop: 10, fontSize: 20, color: '#333' }}>
+            <Text style={{ fontWeight: 'bold', color: '#4286f4' }}>MemoCard</Text> is a great way to improve you studing.
+          </Text>
+          <Text style={{ marginTop: 10, marginBottom: 40, color: '#888' }}>
+            Do this min few minutes everyday and you will get great results.
+          </Text>
           <TouchableOpacity onPress={() => navigation.navigate('AddDeck')} style={[btn, btnPrimary]}>
-            <Text style={btnText}>Create <Text style={textBold}>New Deck</Text>
+            <Text style={btnText}><Text style={textBold}>New Deck</Text>
             </Text>
           </TouchableOpacity>
         </View>
@@ -49,7 +54,8 @@ const styles = StyleSheet.create({
   center: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    margin: 20
   }
 });
 

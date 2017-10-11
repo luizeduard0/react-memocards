@@ -12,15 +12,20 @@ export const TabNavigation = TabNavigator({
     screen: Decks,
     navigationOptions: {
       title: 'Decks',
-      tabBarIcon: () => <MaterialCommunityIcons name='cards' size={30} color={'black'}  />
+      tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards' size={30} color={tintColor}  />
     },
   },
   AddDeck: {
     screen: AddDeck,
     navigationOptions: {
       title: 'Add Deck',
-      tabBarIcon: () => <SimpleLineIcons name='plus' size={30} color={'black'}  />
+      tabBarIcon: ({ tintColor }) => <SimpleLineIcons name='plus' size={30} color={tintColor}  />
     }
+  }
+}, {
+  tabBarOptions: {
+    activeBackgroundColor: '#4286f4',
+    activeTintColor: '#fff'
   }
 })
 

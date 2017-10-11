@@ -5,6 +5,7 @@ import { MainNavigation } from './router'
 import Decks from './screens/Decks'
 import rootReducer from './rootReducer'
 import logger from 'redux-logger'
+import { setLocalNotification } from './utils/helpers'
 
 
 const store = createStore(rootReducer, compose(
@@ -12,6 +13,9 @@ const store = createStore(rootReducer, compose(
 ))
 
 export default class App extends React.Component {
+  componentDidMount(){
+    setLocalNotification()
+  }
   render() {
     return (
       <Provider store={store}>

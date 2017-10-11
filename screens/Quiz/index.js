@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
-import { card, btnPrimary, btnLink, btn, btnTextOutline, btnText } from './../../utils/styles'
+import { card, btnPrimary, btnLink, btn, btnTextOutline, btnText, btnDanger } from './../../utils/styles'
+import { clearLocalNotification } from './../../utils/helpers'
 
 class Quiz extends Component {
   state = {
@@ -23,6 +24,9 @@ class Quiz extends Component {
     if(nextQuestion > lastQuestion) {
       this.setState({ showResults: true })
       nextQuestion = lastQuestion
+
+      clearLocalNotification()
+
     }
 
     switch(result) {
@@ -47,21 +51,41 @@ class Quiz extends Component {
   }
   getResult = () => {
     const { totalQuestions, correctAnswers } = this.state
-    const perc = ((correctAnswers * 100) / totalQuestions).toFixed(1)
+    const perc = ((correctAnswers * 100) / totalQuestions).toFixed(0)
 
-    message = ''
+    let backgroundColor = 'transparent'
+    let message = ''
 
-    if(perc >= 0) message = "😔 Nothing at all? Try again!"
-    if(perc >= 20) message = "😔 Too bad."
-    if(perc >= 40) message = "📖 Let's do some more practice. Try again."
-    if(perc >= 60) message = "💪 That was good! But you can do better"
-    if(perc >= 80) message = "👍 Awesome! You did a great job"
-    if(perc >= 99) message = "👏 Congratulations! You nailed it."
+    if(perc >= 0) {
+      message = "😔 Nothing at all?"
+      backgroundColor = '#db6a50'
+    }
+    if(perc >= 20) {
+      message = "😔 Too bad."
+      backgroundColor = '#e1a75b'
+    }
+    if(perc >= 40) {
+      message = "📖 Let's do some more practice."
+      backgroundColor = '#e1c95b'
+    }
+    if(perc >= 60) {
+      message = "💪 That was good! But you can do better"
+      backgroundColor = '#3fa3dc'
+    }
+    if(perc >= 80) {
+      message = "👍 Awesome! You did a great job"
+      backgroundColor = '#64be4f'
+    }
+    if(perc >= 99) {
+      message = "👏 Congratulations! You nailed it."
+      backgroundColor = '#78dd61'
+    }
 
 
     return {
       message,
-      perc
+      perc,
+      backgroundColor
     }
   }
   render() {
@@ -71,9 +95,9 @@ class Quiz extends Component {
     if(showResults) {
       const result = this.getResult()
       return (
-        <View style={styles.center}>
-          <Text style={{ fontSize: 30 }}>{result.perc}%</Text>
-          <Text style={{ fontSize: 20 }}>{result.message}</Text>
+        <View style={[styles.center, { backgroundColor: result.backgroundColor }]}>
+          <Text style={styles.resultText}>{result.perc}%</Text>
+          <Text style={styles.resultTextSmall}>{result.message}</Text>
 
           {result.perc < 99 && (
             <TouchableOpacity
@@ -83,8 +107,8 @@ class Quiz extends Component {
                 currentQuestion: 0,
                 correctAnswers: 0
               })}
-              style={[btn]}>
-              <Text style={btnText}>Try again</Text>
+              style={[btn, { backgroundColor: 'rgba(0,0,0,0.3)' }]}>
+              <Text style={[btnText]}>Try again</Text>
             </TouchableOpacity>
           )}
         </View>
@@ -94,12 +118,14 @@ class Quiz extends Component {
 
     return (
       <View style={card}>
-        <View style={styles.questionHeader}>
-          <Text style={styles.questionHeaderText}>{currentQuestion+1}/{totalQuestions}</Text>
+        <View style={styles.questionBreadcrumbs}>
+          <Text style={styles.questionBreadcrumbsText}>{currentQuestion+1}/{totalQuestions}</Text>
         </View>
-        <Text style={styles.question}>
-          {showAnswer ? question.correctAnswer : question.title}
-        </Text>
+        <View style={[styles.questionHeader, {marginTop: this.state.showAnswer ? 20 : 0}]}>
+          <Text style={[styles.question, this.state.showAnswer && styles.correctAnswer]}>
+            {showAnswer ? question.correctAnswer : question.title}
+          </Text>
+        </View>
         {showAnswer && (
           <View style={styles.answer}>
             <TouchableOpacity
@@ -110,7 +136,7 @@ class Quiz extends Component {
             <View style={styles.actions}>
               <TouchableOpacity
                   onPress={() => this.answer('incorrect')}
-                  style={[btn, { marginTop: 20 }]}>
+                  style={[btn, btnDanger, { marginTop: 20 }]}>
                 <Text style={[btnText, {fontSize: 16}]}>Incorrect</Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -145,11 +171,16 @@ const styles = new StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  questionHeader: {
+  },
   question: {
     fontSize: 20,
   },
   answer: {
     padding: 20
+  },
+  correctAnswer: {
+    color: 'green'
   },
   answerText: {
     fontSize: 17
@@ -157,16 +188,34 @@ const styles = new StyleSheet.create({
   actions: {
     flexDirection: 'row'
   },
-  questionHeader: {
+  questionBreadcrumbs: {
     position: 'absolute',
     right: 5,
     top: 5
   },
-  questionHeaderText: {
+  questionBreadcrumbsText: {
     color: '#aaa',
     padding: 3,
     paddingLeft: 6,
     paddingRight: 6
+  },
+  resultText: {
+    fontSize: 70,
+    color: '#fff',
+    textShadowColor: 'rgba(0,0,0,0.06)',
+    textShadowOffset: {
+      width: 0,
+      height: 2
+    }
+  },
+  resultTextSmall: {
+    fontSize: 19,
+    color: '#fff',
+    textShadowColor: 'rgba(0,0,0,0.06)',
+    textShadowOffset: {
+      width: 0,
+      height: 2
+    }
   }
 })
 export default connect(mapStateToProps)(Quiz)
