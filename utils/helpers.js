@@ -4,9 +4,7 @@ import { Notifications, Permissions } from 'expo'
 export const MEMOCARD_KEY = 'MEMOCARD::DB'
 export const NOTIFICATION_KEY = 'MEMOCARD::NOTIFICATION'
 
-export const uuid = () => {
-  return Math.random().toString(36).substr(-8)
-}
+export const uuid = () => Math.random().toString(36).substr(-8)
 
 function createNotification() {
   return {

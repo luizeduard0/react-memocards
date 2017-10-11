@@ -67,13 +67,12 @@ const styles = StyleSheet.create({
 function mapStateToProps({ decks={} }) {
   return {
     decks: Object.keys(decks)
-                 .map(key => {
-                   const deck = decks[key]
-                   deck.questions = Object.keys(deck.questions)
-                                          .map(questionKey => deck.questions[questionKey])
-
-                  return deck
-                 })
+     .map(key => {
+       const deck = decks[key]
+       deck.questions = Object.keys(deck.questions)
+        .map(questionKey => deck.questions[questionKey])
+      return deck
+    })
   }
 }
 
