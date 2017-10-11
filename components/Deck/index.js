@@ -8,7 +8,7 @@ export default Deck = ({ deck, navigation,  type='compact' }) => {
     <View style={styles.deck}>
       <View style={styles.header}>
         <Text style={styles.title}>{ deck.title }</Text>
-        <Text style={styles.subtitle}>{deck.questions.length || 0} cards</Text>
+        <Text style={styles.subtitle}>{deck.questions.length || 0} {deck.questions.length === 1 ? 'card' : 'cards'}</Text>
       </View>
       {type==='complete' && (
         <View style={styles.actionBtns}>

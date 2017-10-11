@@ -12,6 +12,7 @@ export const TabNavigation = TabNavigator({
     screen: Decks,
     navigationOptions: {
       title: 'Decks',
+      header: null,
       tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards' size={30} color={tintColor}  />
     },
   },
@@ -33,11 +34,16 @@ export const MainNavigation = StackNavigator({
   Home: {
     screen: TabNavigation,
     navigationOptions: {
-      header: null
     }
   },
   Deck: {
-    screen: ShowDeck
+    screen: ShowDeck,
+    navigationOptions: {
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: '#4286f4'
+      }
+    }
   },
   Quiz: {
     screen: Quiz

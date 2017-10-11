@@ -29,6 +29,7 @@ class Decks extends Component {
 
     return (
       <View style={styles.container}>
+        <Text style={styles.title}>All Decks</Text>
         <FlatList
           data={decks}
           keyExtractor={(item, index) => item.id}
@@ -56,6 +57,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     margin: 20
+  },
+  title: {
+    fontSize: 25,
+    padding: 10
   }
 });
 
